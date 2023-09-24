@@ -7,7 +7,6 @@ import utils.ConfigUtil;
 
 import java.util.Properties;
 
-
 public class LoginPage {
 
     static Properties configProperties;
