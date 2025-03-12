@@ -10,10 +10,10 @@ import java.util.Properties;
 public class LoginPage {
 
     static Properties configProperties;
-    protected static String baseUrlSauceDemo = setConfig().getProperty("baseUrlSauceDemo");
     protected static String homePageUrlSauceDemo = setConfig().getProperty("homePageUrlSauceDemo");
     protected static String username = setConfig().getProperty("webUserName");
     protected static String password = setConfig().getProperty("webPassword");
+    static String baseUrlSauceDemo = setConfig().getProperty("baseUrlSauceDemo");
     By userNameTextBox = By.id("user-name");
     By passwordTextBox = By.id("password");
     By loginButton = By.id("login-button");

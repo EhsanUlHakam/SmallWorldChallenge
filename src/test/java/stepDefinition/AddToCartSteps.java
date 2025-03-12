@@ -44,6 +44,45 @@ public class AddToCartSteps extends BaseClass {
         Assert.assertTrue(home.verifyCartPageItem());
     }
 
+    @When("User proceeds to checkout")
+    public void user_proceeds_to_checkout() {
+        home.clickCheckoutButton();
+    }
+
+    @And("User fills out the checkout form with first name {string}, last name {string}, and postal code {string}")
+    public void user_fills_out_the_checkout_form(String firstName, String lastName, String postalCode) {
+        home.addValueToFirstNameOnCheckoutScreen(firstName);
+        home.addValueToLastNameOnCheckoutScreen(lastName);
+        home.addValueToPostalCodeOnCheckoutScreen(postalCode);
+    }
+
+    @And("User clicks continue on the checkout screen")
+    public void user_clicks_continue_on_the_checkout_screen() {
+        home.clickContinueButtonOnCheckoutScreen();
+    }
+
+    @And("User completes the order")
+    public void user_completes_the_order() {
+        home.clickFinishButtonOnCheckoutScreen();
+    }
+
+    @Then("Order confirmation should be displayed")
+    public void order_confirmation_should_be_displayed() {
+        String confirmationMessage = home.getOrderConfirmationMessage();
+        Assert.assertEquals(confirmationMessage, "Thank you for your order!");
+    }
+
+    @When("User attempts to checkout without filling out the form")
+    public void user_attempts_to_checkout_without_filling_out_the_form() {
+        home.clickCheckoutButton();
+        home.clickContinueButtonOnCheckoutScreen();
+    }
+
+    @Then("An error message should be displayed")
+    public void an_error_message_should_be_displayed() {
+        Assert.assertTrue(home.isErrorMessageDisplayed());
+    }
+
     @After
     public void afterScenario() {
         tearDown();
